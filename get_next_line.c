@@ -6,7 +6,7 @@
 /*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:51:26 by aapryce           #+#    #+#             */
-/*   Updated: 2023/05/17 13:44:25 by aapryce          ###   ########.fr       */
+/*   Updated: 2023/05/19 14:10:03 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ static char	*ft_extract(char **store)
 	if (next_line)
 	{
 		line = ft_substr(*store, 0, next_line - *store + 1);
+		free (*store);
 		*store = ft_strdup(next_line + 1);
 	}
 	else
 	{
 		line = ft_strdup(*store);
+		free (*store);
 		*store = NULL;
 	}
 	return (line);
@@ -61,7 +63,7 @@ static char	*ft_extract(char **store)
 
 char	*get_next_line(int fd)
 {
-	static char	*store;
+	static char	*store = NULL;
 	char		*line;
 	int			bytes;
 
@@ -72,10 +74,11 @@ char	*get_next_line(int fd)
 	bytes = 1;
 	while (bytes > 0 && !ft_strchr(store, '\n'))
 		bytes = ft_read(fd, &store);
-	if (bytes == -1)
+	if (bytes == -1 || !ft_strlen(store))
+	{
+		free (store);
 		return (NULL);
-	if (!ft_strlen(store))
-		return (NULL);
+	}
 	line = ft_extract(&store);
 	return (line);
 }
@@ -91,6 +94,7 @@ int	main(void)
 	
 	line = get_next_line(fd);
 	printf("%s", line);
+	free (line);
 
 	while ((line = get_next_line(fd)))
 	{

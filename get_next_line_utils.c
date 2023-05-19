@@ -6,7 +6,7 @@
 /*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:55:23 by aapryce           #+#    #+#             */
-/*   Updated: 2023/05/17 11:21:56 by aapryce          ###   ########.fr       */
+/*   Updated: 2023/05/19 13:46:53 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,9 @@ char	*ft_strjoin(char *str1, char *str2)
 	if (!arr)
 		return (NULL);
 	while (*str1)
-	{
-		arr[i] = *str1;
-		i++;
-		str1++;
-	}
+		arr[i++] = *str1++;
 	while (*str2)
-	{
-		arr[i] = *str2;
-		i++;
-		str2++;
-	}
+		arr[i++] = *str2++;
 	arr[i] = '\0';
 	return (arr);
 }
@@ -80,7 +72,14 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	if (!arr)
 		return (NULL);
 	while (i < len)
+	{
 		arr[i++] = s[start++];
+		if (!arr)
+		{
+			free(arr);
+			return (NULL);
+		}
+	}
 	arr[i] = '\0';
 	return (arr);
 }
