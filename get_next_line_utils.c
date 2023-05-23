@@ -6,7 +6,7 @@
 /*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:55:23 by aapryce           #+#    #+#             */
-/*   Updated: 2023/05/22 13:46:17 by aapryce          ###   ########.fr       */
+/*   Updated: 2023/05/23 11:57:36 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *str1, char *str2)
+char	*ft_strjoin(const char *str1, const char *str2)
 {
 	char	*arr;
 	size_t	len;
