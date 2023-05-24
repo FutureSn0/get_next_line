@@ -6,7 +6,7 @@
 /*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:51:26 by aapryce           #+#    #+#             */
-/*   Updated: 2023/05/24 09:12:20 by aapryce          ###   ########.fr       */
+/*   Updated: 2023/05/24 11:20:55 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	ft_read(int fd, char **store)
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (-1);
-	bytes = read(fd, buffer, BUFFER_SIZE - 1);
+	bytes = read(fd, buffer, BUFFER_SIZE);
 	if (bytes == -1)
 	{
 		free (buffer);
@@ -102,7 +102,7 @@ int	main(void)
 	char	*line;
 	int	fd;
 
-	fd = open("test.txt", O_RDONLY);
+	fd = open("test2.txt", O_RDONLY);
 
 	line = get_next_line(fd);
 	printf("%s", line);
