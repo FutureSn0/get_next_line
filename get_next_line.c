@@ -6,7 +6,7 @@
 /*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:51:26 by aapryce           #+#    #+#             */
-/*   Updated: 2023/05/23 13:50:03 by aapryce          ###   ########.fr       */
+/*   Updated: 2023/05/24 09:12:20 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,23 @@ char	*ft_strcpy(char *dest, const char *src)
 
 static int	ft_read(int fd, char **store)
 {
-	char	buffer[BUFFER_SIZE + 1];
+	char	*buffer;
 	char	*temp;
 	int		bytes;
 
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (-1);
 	bytes = read(fd, buffer, BUFFER_SIZE - 1);
 	if (bytes == -1)
+	{
+		free (buffer);
 		return (-1);
+	}
 	buffer[bytes] = '\0';
 	temp = ft_strjoin(*store, buffer);
 	free (*store);
+	free (buffer);
 	*store = temp;
 	return (bytes);
 }
