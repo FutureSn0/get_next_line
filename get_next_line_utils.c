@@ -6,7 +6,7 @@
 /*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:55:23 by aapryce           #+#    #+#             */
-/*   Updated: 2023/05/23 11:57:36 by aapryce          ###   ########.fr       */
+/*   Updated: 2023/09/22 12:16:46 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*ft_strjoin(const char *str1, const char *str2)
 	size_t	len;
 	int		i;
 
+	if (!str1 || !str2)
+		return (NULL);
 	i = 0;
 	len = ft_strlen(str1) + ft_strlen(str2);
 	arr = (char *)malloc(len + 1);

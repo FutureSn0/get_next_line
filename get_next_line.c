@@ -6,7 +6,7 @@
 /*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:51:26 by aapryce           #+#    #+#             */
-/*   Updated: 2023/09/11 08:59:32 by aapryce          ###   ########.fr       */
+/*   Updated: 2023/09/22 13:03:20 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ static int	ft_read(int fd, char **store)
 	}
 	buffer[bytes] = '\0';
 	temp = ft_strjoin(*store, buffer);
+	if (!temp)
+	{
+		free(buffer);
+		return (-1);
+	}
 	free (*store);
 	free (buffer);
 	*store = temp;
@@ -60,6 +65,10 @@ static char	*ft_extract(char **store)
 	if (next_line)
 	{
 		line = ft_substr(*store, 0, next_line - *store + 1);
+		if (!line)
+			{
+				return (NULL);
+			}
 		temp = ft_strdup(next_line + 1);
 		free (*store);
 		*store = temp;
@@ -82,13 +91,20 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (!store)
+	{
 		store = ft_strdup("");
+		if (!store)
+		{
+			return (NULL);
+		}
+	}
 	bytes = 1;
 	while (bytes > 0 && !ft_strchr(store, '\n'))
 		bytes = ft_read(fd, &store);
 	if (bytes == -1 || !ft_strlen(store))
 	{
 		free (store);
+		store = NULL;
 		return (NULL);
 	}
 	line = ft_extract(&store);
