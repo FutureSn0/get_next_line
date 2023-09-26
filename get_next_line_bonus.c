@@ -6,7 +6,7 @@
 /*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:04:41 by aapryce           #+#    #+#             */
-/*   Updated: 2023/09/26 11:33:00 by aapryce          ###   ########.fr       */
+/*   Updated: 2023/09/26 11:48:27 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,3 +106,41 @@ char	*get_next_line(int fd)
 	line = ft_extract(&store[fd]);
 	return (line);
 }
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	char	*line;
+	int	fd[3];
+	int	i;
+	int	j;
+
+	i = 0;
+	fd[0] = open("test.txt", O_RDONLY);
+	fd[1] = open("test1.txt", O_RDONLY);
+	fd[2] = open("test2.txt", O_RDONLY);
+	line = NULL;
+
+	while (i < 5)
+	{
+		j = 0;
+		while (j < 3)
+		{
+			line = get_next_line(fd[j]);
+			if (line)
+			{
+				printf("%s", line);
+				free (line);
+			}
+			j++;
+		}
+		i++;
+	}
+	for (j = 0; j < 3; j++)
+	{
+		close (fd[j]);
+	}
+	return (0);
+}
+/*
