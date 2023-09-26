@@ -6,7 +6,7 @@
 /*   By: aapryce <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 11:51:26 by aapryce           #+#    #+#             */
-/*   Updated: 2023/09/22 13:03:20 by aapryce          ###   ########.fr       */
+/*   Updated: 2023/09/26 09:40:08 by aapryce          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,6 @@ static char	*ft_extract(char **store)
 	if (next_line)
 	{
 		line = ft_substr(*store, 0, next_line - *store + 1);
-		if (!line)
-			{
-				return (NULL);
-			}
 		temp = ft_strdup(next_line + 1);
 		free (*store);
 		*store = temp;
