@@ -9,7 +9,7 @@ get_next_line is a project where we must create a function that will allow us to
 
 ```bash
 git clone git@github.com:FutureSn0/get_next_line.git
-cd libft
+cd get_next_line
 ```
 
 2. Compile with source files including the main as follows. To compile the bonus version, use get_next_line_bonus and get_next_line_utills_bonus instead.
